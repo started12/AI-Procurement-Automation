@@ -4,22 +4,6 @@
 
 ---
 
-## 📖 Overview
-
-Procurement is one of the most repetitive and detail-sensitive operations inside engineering, manufacturing, and industrial companies. A single Request for Quotation (RFQ) usually starts a long chain of manual tasks: reading emails, extracting dozens of part numbers, creating spreadsheets, contacting suppliers, tracking replies, comparing quotations, and finally preparing information for engineering or management to make purchasing decisions.
-
-Although each individual task appears simple, together they consume a significant amount of engineering time while introducing unnecessary opportunities for human error.
-
-This project was built to eliminate those repetitive operations without sacrificing reliability, transparency, or professionalism.
-
-Rather than automating isolated actions, the platform automates the **entire procurement lifecycle**, beginning with an incoming RFQ and ending with a professionally generated quotation comparison sheet ready for engineering review.
-
-The workflow combines AI where flexibility is required, deterministic business logic where reliability is critical, and carefully designed document generation to ensure every interaction reflects the company's professional image.
-
-Unlike many automation projects that demonstrate technical integrations, this system was designed around **real procurement practices**, using real RFQ structures and real operational workflows to ensure that every engineering decision solves an actual business problem.
-
----
-
 # 🎯 Why This Project Exists
 
 Every procurement department shares the same challenge.
@@ -49,6 +33,22 @@ This platform was designed to remove those repetitive operations while keeping e
 The objective was never to build an "AI workflow."
 
 The objective was to build a procurement solution that engineers would actually enjoy using.
+
+---
+
+## 📖 Overview
+
+Procurement is one of the most repetitive and detail-sensitive operations inside engineering, manufacturing, and industrial companies. A single Request for Quotation (RFQ) usually starts a long chain of manual tasks: reading emails, extracting dozens of part numbers, creating spreadsheets, contacting suppliers, tracking replies, comparing quotations, and finally preparing information for engineering or management to make purchasing decisions.
+
+Although each individual task appears simple, together they consume a significant amount of engineering time while introducing unnecessary opportunities for human error.
+
+This project was built to eliminate those repetitive operations without sacrificing reliability, transparency, or professionalism.
+
+Rather than automating isolated actions, the platform automates the **entire procurement lifecycle**, beginning with an incoming RFQ and ending with a professionally generated quotation comparison sheet ready for engineering review.
+
+The workflow combines AI where flexibility is required, deterministic business logic where reliability is critical, and carefully designed document generation to ensure every interaction reflects the company's professional image.
+
+Unlike many automation projects that demonstrate technical integrations, this system was designed around **real procurement practices**, using real RFQ structures and real operational workflows to ensure that every engineering decision solves an actual business problem.
 
 ---
 
