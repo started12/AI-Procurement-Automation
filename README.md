@@ -1,300 +1,1012 @@
-# AI Procurement Automation
+# 🚀 AI Procurement Automation
 
 > **An engineering-driven procurement automation platform that streamlines the complete procurement lifecycle using intelligent document processing, deterministic business logic, and professional document generation.**
 
 ---
 
-## Why This Project Exists
+## 📖 Overview
 
-Procurement is one of the most repetitive and detail-sensitive operations inside many engineering, manufacturing, and industrial companies.
+Procurement is one of the most repetitive and detail-sensitive operations inside engineering, manufacturing, and industrial companies. A single Request for Quotation (RFQ) usually starts a long chain of manual tasks: reading emails, extracting dozens of part numbers, creating spreadsheets, contacting suppliers, tracking replies, comparing quotations, and finally preparing information for engineering or management to make purchasing decisions.
 
-A single Request for Quotation (RFQ) often starts a chain of repetitive manual tasks:
+Although each individual task appears simple, together they consume a significant amount of engineering time while introducing unnecessary opportunities for human error.
 
-* Opening and reading incoming emails.
-* Extracting dozens of part numbers manually.
-* Rewriting information into spreadsheets.
-* Looking up existing parts.
-* Preparing quotation sheets.
-* Contacting multiple suppliers individually.
-* Waiting for supplier responses.
-* Constantly checking emails to see who has replied.
-* Remembering who still hasn't responded.
-* Creating comparison sheets manually.
-* Presenting quotations to engineers or managers for the final decision.
+This project was built to eliminate those repetitive operations without sacrificing reliability, transparency, or professionalism.
 
-Although every one of these tasks appears simple, they consume a considerable amount of engineering time and introduce unnecessary opportunities for human error.
+Rather than automating isolated actions, the platform automates the **entire procurement lifecycle**, beginning with an incoming RFQ and ending with a professionally generated quotation comparison sheet ready for engineering review.
 
-This project was not designed to automate isolated tasks.
+The workflow combines AI where flexibility is required, deterministic business logic where reliability is critical, and carefully designed document generation to ensure every interaction reflects the company's professional image.
 
-It was designed to automate the **entire procurement lifecycle** while keeping every stakeholder informed, maintaining complete visibility over every order, and producing professional outputs that reflect the company's image.
-
-The objective was never to build "an AI workflow."
-
-The objective was to build a procurement platform around real business operations.
+Unlike many automation projects that demonstrate technical integrations, this system was designed around **real procurement practices**, using real RFQ structures and real operational workflows to ensure that every engineering decision solves an actual business problem.
 
 ---
 
-# Design Philosophy
+# 🎯 Why This Project Exists
 
-Throughout the development of this system, one principle remained constant:
+Every procurement department shares the same challenge.
 
-> **Every component exists because it solves a real business problem.**
+Employees spend a large portion of their working hours performing repetitive administrative tasks that add very little business value.
 
-No feature was added simply because it looked impressive.
+Typical procurement activities include:
 
-Every workflow, every database table, every code node, every notification, every generated document and every design decision was created to improve reliability, reduce human effort, eliminate unnecessary mistakes or improve the experience of the people interacting with the system.
+- Reading incoming RFQ emails.
+- Extracting part numbers manually.
+- Creating quotation sheets from scratch.
+- Searching company databases for matching parts.
+- Contacting suppliers individually.
+- Waiting for supplier replies.
+- Continuously checking inboxes for new quotations.
+- Remembering which suppliers have replied.
+- Following up with suppliers who missed deadlines.
+- Creating quotation comparison sheets manually.
+- Organizing information for engineering and management.
 
-Whenever a technical decision conflicted with business usability, business usability came first.
+Most of these tasks require attention rather than engineering expertise.
 
----
+The result is lost productivity, inconsistent documentation, unnecessary delays, and increased opportunities for human mistakes.
 
-# Business Capabilities
+This platform was designed to remove those repetitive operations while keeping employees fully informed and maintaining complete visibility over every procurement order.
 
-Instead of automating individual actions, the platform manages the procurement process from the moment an RFQ is received until the engineer receives a professionally organized quotation comparison.
+The objective was never to build an "AI workflow."
 
-The system currently provides:
-
-* Multi-format RFQ processing.
-* Intelligent document classification.
-* AI-assisted data extraction.
-* Database-backed part validation.
-* Automatic RFQ generation.
-* Professional Excel document creation.
-* Supplier selection through simple commands.
-* Automated supplier communication.
-* Supplier response tracking.
-* Deadline management.
-* Procurement state tracking.
-* Executive-ready comparison sheets.
-* Complete order visibility.
-* Real-time notifications.
-
-Each capability exists for a specific operational reason.
-
-The following sections explain those decisions in detail.
+The objective was to build a procurement solution that engineers would actually enjoy using.
 
 ---
 
-# Multi-Format RFQ Processing
+# 💡 Design Philosophy
 
-Procurement departments rarely receive quotation requests in one standardized format.
+Throughout development, one principle guided every engineering decision:
 
-Different clients work differently.
+> **Every component of the system exists because it solves a real business problem.**
 
-Some send professionally prepared Excel sheets.
+Features were never added simply because they looked impressive.
+
+Every workflow, every database table, every notification, every generated document, every code node, and every design decision exists to improve at least one of the following:
+
+- Reduce manual work.
+- Reduce human mistakes.
+- Improve business reliability.
+- Save engineering time.
+- Improve supplier experience.
+- Improve manager visibility.
+- Produce more professional outputs.
+
+Whenever technical complexity conflicted with business usability, business usability always came first.
+
+The system is intentionally designed to adapt to business requirements—not the other way around.
+
+---
+
+# 🏗️ System Architecture
+
+> 📷 **Architecture Diagram Placeholder**
+
+*(A complete system architecture diagram will be inserted here.)*
+
+The platform follows a complete procurement lifecycle rather than automating isolated tasks.
+
+```text
+Incoming RFQ
+      │
+      ▼
+Document Classification
+      │
+      ▼
+AI Data Extraction
+      │
+      ▼
+Part Matching
+      │
+      ▼
+Order Registration
+      │
+      ▼
+Telegram Notification
+      │
+      ▼
+Supplier Selection
+      │
+      ▼
+Professional RFQ Generation
+      │
+      ▼
+Supplier Distribution
+      │
+      ▼
+Supplier Response Tracking
+      │
+      ▼
+Deadline Monitoring
+      │
+      ▼
+Comparison Sheet Generation
+      │
+      ▼
+Engineering Decision
+```
+
+Every stage has a clearly defined responsibility, allowing the system to remain modular, traceable, and easy to expand as business requirements evolve.
+
+---
+
+# ✨ Business Capabilities
+
+Rather than thinking of the project as "an automation workflow", it is better described as a procurement platform composed of several business capabilities working together.
+
+Each capability was designed to solve a specific operational problem.
+
+---
+
+## 📥 Multi-Format RFQ Processing
+
+Companies rarely receive procurement requests in a single standardized format.
+
+Some customers send Excel sheets.
 
 Others attach PDFs.
 
-Some simply write the required parts inside the email.
+Some simply write their requirements directly inside an email.
 
-Many suppliers and customers even send screenshots or images.
+Many even send screenshots or images containing part numbers that cannot be copied into spreadsheets.
 
-Instead of forcing employees to manually rewrite every request into a structured format, the platform accepts:
+Instead of forcing employees to manually rewrite every request into a usable format, the platform accepts multiple input formats including:
 
-* Excel
-* PDF
-* Plain text
-* Images
+- Excel (.xlsx)
+- PDF
+- Plain Text
+- Images
 
 Supporting image-based RFQs is particularly valuable.
 
-Without automated extraction, employees often need to manually type every part number, description and quantity before any procurement work can even begin.
+Without automated extraction, procurement employees often spend several minutes manually typing every part number, description, and requested quantity before any procurement work can even begin.
 
-That repetitive task adds no business value while introducing opportunities for typing mistakes.
+This repetitive work provides no business value while increasing the possibility of typing mistakes.
 
-By supporting multiple formats from the beginning, the workflow adapts to the client's preferred communication method rather than forcing clients to adapt to the system.
-
----
-
-# AI Used Where It Adds Value
-
-Although the project includes artificial intelligence, AI was intentionally limited to the tasks where it provides measurable benefits.
-
-AI is responsible for:
-
-* Classifying incoming emails to distinguish procurement requests from advertisements or unrelated messages.
-* Extracting procurement information from unstructured RFQs.
-* Extracting supplier quotation data from replies that may have different layouts.
-
-Incoming documents often include company logos, signatures, branding elements and unrelated information.
-
-Instead of relying on rigid templates, AI identifies the procurement data that actually matters and converts it into a structured format ready for processing.
-
-Business-critical operations are **not** delegated to AI.
-
-Part matching, supplier tracking, RFQ state management, deadline handling, command parsing, validation and workflow decisions rely on deterministic logic implemented through custom JavaScript, regex processing and structured workflow design.
-
-This approach combines AI flexibility with engineering reliability.
+By supporting multiple document formats from the beginning, the workflow adapts to the client's preferred communication method instead of forcing clients to adapt to the system.
 
 ---
 
-# Professional RFQ Generation
+## 🧩 Intelligent Part Matching
 
-Generating an RFQ is much more than exporting data into Excel.
+Once procurement data has been extracted, every requested part is validated against the company's internal parts database.
 
-The generated document represents the company's professionalism.
+The matching process immediately separates:
 
-For that reason, RFQ sheets are generated through dedicated Python services running inside Docker rather than simple spreadsheet exports.
+- Successfully matched parts.
+- Unknown parts.
+- Missing parts.
 
-Each RFQ is professionally formatted with:
+Instead of discovering missing inventory later during procurement, employees are informed immediately.
 
-* Company branding.
-* Company logo.
-* Organized layouts.
-* Clear typography.
-* Consistent styling.
-* Highlighted supplier input fields.
+This early validation provides multiple benefits:
 
-Supplier-editable cells are intentionally colored to guide attention immediately toward the information suppliers are expected to provide.
+- Faster procurement decisions.
+- Immediate visibility into unavailable inventory.
+- Reduced manual database searching.
+- Better preparation before contacting suppliers.
 
-This small visual decision reduces confusion, improves completion speed and creates a more professional experience for external suppliers.
-
-Good document design strengthens business relationships.
+Employees also receive a clear summary showing matched and unmatched items, allowing them to investigate potential data issues before procurement continues.
 
 ---
 
-# Human-Centered Supplier Selection
+## 📦 Procurement State Management
 
-Sending RFQs to suppliers should be quick, reliable and resistant to mistakes.
+Procurement is not a single action.
 
-Instead of requiring employees to type supplier names or email addresses manually, every supplier is assigned a unique internal Supplier ID.
+It is a lifecycle.
+
+One of the most important engineering challenges solved by this project was tracking the current state of every RFQ from beginning to end.
+
+Instead of treating procurement requests as independent emails, each RFQ moves through a well-defined lifecycle.
+
+Typical states include:
+
+- Pending Supplier Selection
+- RFQs Sent
+- Waiting for Supplier Responses
+- Partially Responded
+- Comparison Generated
+- Quoted
+- Cancelled
+
+Maintaining these states provides complete visibility over every procurement request.
+
+At any moment, employees and managers can immediately determine:
+
+- Which RFQs require action.
+- Which suppliers have already responded.
+- Which quotations are still pending.
+- Which comparisons have already been completed.
+
+This structured lifecycle removes uncertainty while making procurement significantly easier to monitor.
+
+---
+
+## 📨 Automated Supplier Communication
+
+Once suppliers have been selected, the workflow automatically generates and distributes professionally formatted RFQ sheets.
+
+Employees no longer need to:
+
+- Create spreadsheets manually.
+- Copy procurement data repeatedly.
+- Write multiple supplier emails.
+- Attach quotation sheets individually.
+- Keep track of who received which RFQ.
+
+Every supplier receives:
+
+- A professionally designed RFQ sheet.
+- Company branding.
+- Clear supplier instructions.
+- A predefined response deadline.
+
+Automating supplier communication not only saves engineering time but also ensures every supplier receives consistent documentation, reducing misunderstandings and improving the company's professional image.
+
+---
+
+## 🔍 Complete Traceability
+
+Every procurement event is recorded.
+
+Nothing disappears once the workflow finishes.
+
+Throughout the lifecycle, the platform maintains traceability for:
+
+- RFQ IDs
+- Client information
+- Order details
+- Individual order lines
+- Selected suppliers
+- Supplier responses
+- Response deadlines
+- Generated RFQs
+- Generated comparison sheets
+- Current procurement status
+
+Rather than becoming a "black box", the workflow creates a complete history that can later be reviewed for auditing, troubleshooting, management review, or operational analysis.
+
+This visibility was one of the primary design goals of the platform and influenced many architectural decisions discussed later in this documentation.
+
+# 🧠 AI Where It Matters, Logic Where It Counts
+
+Artificial Intelligence is an important component of this platform—but it is intentionally **not** the center of it.
+
+One lesson learned throughout development was that giving AI too much control over business operations reduces reliability instead of improving it.
+
+For that reason, AI is only responsible for tasks where flexibility is genuinely valuable, while every business-critical decision is handled using deterministic logic, custom JavaScript, regular expressions, and structured workflow design.
+
+This balance allows the platform to benefit from AI without sacrificing consistency or operational trust.
+
+---
+
+## 🤖 Intelligent RFQ Classification
+
+Every incoming email is inspected before the procurement workflow begins.
+
+Not every email arriving in a procurement mailbox deserves processing.
+
+Advertisements, newsletters, promotional campaigns, and unrelated conversations would waste computing resources, create unnecessary notifications, and potentially generate invalid procurement orders.
+
+To prevent this, AI performs an initial classification step.
+
+Each incoming email is categorized as either:
+
+- Valid Procurement Inquiry
+- Supplier Response
+- Ignore
+
+This simple decision dramatically improves system reliability by ensuring that only relevant procurement activities continue through the workflow.
+
+Instead of automating everything, the platform first decides **whether automation should happen at all**.
+
+---
+
+## 📑 Intelligent Data Extraction
+
+Once a document has been classified, AI extracts only the information required for procurement.
+
+Incoming RFQs and supplier quotations rarely follow identical templates.
+
+Different companies organize their documents differently.
+
+Some include logos, signatures, marketing content, company addresses, legal text, or other information that provides no procurement value.
+
+Instead of depending on rigid templates, AI isolates only the data that matters.
+
+Typical extracted information includes:
+
+- Part Number
+- Description
+- Requested Quantity
+- Available Quantity
+- Unit Price
+- Net Price
+- Delivery Time
+- Currency
+- Warehouse
+- Supplier Remarks
+
+The extracted information is then converted into a structured format that the rest of the workflow can process consistently regardless of the original document layout.
+
+This significantly increases compatibility with different suppliers and customers while reducing manual data entry.
+
+---
+
+## ⚙️ Deterministic Business Logic
+
+Once procurement data becomes structured, AI steps aside.
+
+From this point onward, the workflow relies on deterministic engineering rather than probabilistic reasoning.
+
+Business operations including:
+
+- Part matching
+- RFQ ID generation
+- Supplier selection
+- Status tracking
+- Deadline calculations
+- Database updates
+- Response tracking
+- Comparison generation
+- Telegram command parsing
+- Regular expression processing
+- Data validation
+
+are all handled through workflow logic and custom JavaScript.
+
+This approach ensures predictable behaviour every single time.
+
+The goal is not to replace engineering with AI.
+
+The goal is to combine the strengths of both.
+
+---
+
+# 📋 Professional RFQ Generation
+
+An RFQ is often the first document a supplier receives from a company.
+
+For many suppliers, it creates the first impression of how organized and professional the company is.
+
+For that reason, generating quotation sheets became far more than simply exporting information into Excel.
+
+Instead of relying on basic spreadsheet nodes, this platform uses dedicated Python services running inside Docker containers to generate professionally designed Excel documents.
+
+Each generated RFQ includes:
+
+- Company branding
+- Company logo
+- Organized layout
+- Consistent typography
+- Structured procurement information
+- Clearly separated sections
+- Highlighted supplier input fields
+
+Special attention was given to supplier usability.
+
+The cells suppliers are expected to complete are intentionally highlighted using distinctive colours, allowing suppliers to immediately recognize where their information should be entered.
+
+Although this may appear to be a small visual improvement, it reduces confusion, speeds up quotation completion, and demonstrates professionalism.
+
+Good document design strengthens supplier relationships.
+
+Every generated RFQ should look like it was prepared carefully by the company—not automatically generated by software.
+
+---
+
+# 💬 Telegram Command Center
+
+One of the primary objectives of the platform was minimizing employee interaction while keeping complete operational control.
+
+Instead of requiring employees to navigate multiple dashboards or web interfaces, the system can be controlled entirely from Telegram.
+
+Telegram was selected because of its reliable API, fast communication, generous file sharing capabilities, and support for long messages and document attachments without the limitations found on many messaging platforms.
+
+The objective was simple:
+
+**Allow procurement employees to complete their daily work without leaving their communication platform.**
+
+---
+
+## 📤 Sending RFQs
+
+Once a new procurement request has been reviewed, the employee simply specifies:
+
+- Which RFQ should be processed.
+- Which suppliers should receive it.
+- How long suppliers have to respond.
 
 Example:
 
-send RFQ123 1,3,5 72h
+```text
+send RFQ_ABC123 1,3,5 72h
+```
 
-The workflow automatically retrieves supplier information from the database and distributes the RFQ accordingly.
+or
 
-This design minimizes typing effort while significantly reducing the risk of sending quotations to incorrect recipients or forgetting important suppliers.
+```text
+send RFQ_ABC123 1,3,5 3d
+```
 
-Sometimes a single typing mistake can mean losing the best quotation.
+Instead of typing supplier names or email addresses manually, employees simply provide Supplier IDs.
 
-Small workflow decisions like this help prevent costly human errors.
+The workflow automatically retrieves supplier information from the database before distributing professionally generated RFQ sheets.
 
----
+Supporting both **72h** and **3d** was a deliberate engineering decision.
 
-# Transparent Procurement Tracking
+Different employees naturally express deadlines differently.
 
-One of the project's major goals was transparency.
+Rather than forcing users to memorize one specific syntax, the workflow understands both formats automatically.
 
-Many automation systems hide operational data inside databases that only developers can inspect.
-
-This project intentionally takes the opposite approach.
-
-Google Sheets serves as both the operational database and a business-friendly inspection interface.
-
-Managers and employees can immediately review:
-
-* Current RFQ status.
-* Pending quotations.
-* Sent suppliers.
-* Supplier responses.
-* Extracted RFQ data.
-* Matched and unmatched parts.
-* Order history.
-* Individual quotation data.
-
-This visibility simplifies audits, debugging and day-to-day management without requiring technical knowledge.
+Good software adapts to its users—not the opposite.
 
 ---
 
-# Intelligent Deadline Management
+## 📋 Pending Orders
 
-Waiting indefinitely for supplier replies slows procurement and affects customer satisfaction.
+```text
+list pending
+```
 
-The platform therefore evaluates procurement completion using two independent conditions.
+Displays every RFQ currently waiting for supplier selection.
 
-If every selected supplier replies before the deadline, the comparison process starts immediately.
+Employees immediately know which procurement requests still require action without searching through emails or spreadsheets.
 
-Otherwise, a dedicated monitoring workflow checks deadlines every 30 minutes.
-
-When the deadline expires, the comparison sheet is generated using every quotation received so far.
-
-This prevents procurement from stalling because of one delayed supplier while maintaining predictable delivery times for customers.
+This greatly reduces the chance of forgetting newly received procurement inquiries during busy working days.
 
 ---
 
-# Executive-Ready Comparison Sheets
+## 📑 Complete Procurement Overview
 
-The comparison sheet was designed with two audiences in mind.
+```text
+list all
+```
 
-The engineer performing the technical evaluation.
+Returns every procurement order currently tracked by the platform together with its current lifecycle status.
 
-The manager reviewing multiple procurement decisions.
-
-Instead of immediately presenting detailed supplier data, the sheet begins with a concise summary containing key procurement information.
-
-Managers can quickly understand the order without inspecting every individual quotation.
-
-Below the summary, every supplier is displayed side-by-side with:
-
-* Available quantity.
-* Unit price.
-* Net price.
-* Delivery time.
-* Remarks.
-
-Keeping every quotation aligned horizontally allows engineers to compare suppliers naturally without switching between documents or manually organizing information.
-
-The result is faster decision making with significantly less manual effort.
+Instead of opening multiple spreadsheets, employees receive a complete operational overview within seconds.
 
 ---
 
-# Engineering Decisions
+## 🔍 RFQ Status
 
-Several architectural decisions were made specifically to balance flexibility, reliability and usability.
+```text
+status RFQ_ABC123
+```
 
-### Google Sheets
+Returns the complete lifecycle of a single RFQ.
 
-Chosen because business users need complete visibility into procurement operations, not because it was the easiest database.
+Possible states include:
 
-### n8n
+- Pending Supplier Selection
+- Sent to Suppliers
+- Waiting for Responses
+- Partially Responded
+- Comparison Generated
+- Quoted
+- Cancelled
 
-Selected for orchestrating multiple services while still allowing extensive custom JavaScript whenever business logic required deterministic behavior.
-
-### Python Services
-
-Responsible for generating professionally designed Excel documents that standard spreadsheet nodes cannot produce.
-
-### Docker
-
-Used to isolate services, simplify deployment and keep every component independently maintainable.
-
-### AI
-
-Limited to extraction and classification while deterministic workflow logic remains responsible for operational decisions.
+This command removes uncertainty by allowing employees to instantly understand the current state of any procurement request.
 
 ---
 
-# Technical Overview
+## ❌ Cancelling Procurement
 
-* More than 110 workflow nodes.
-* Approximately 25% implemented as custom JavaScript code nodes.
-* Three dedicated workflows.
-* Dockerized deployment.
-* Ubuntu VPS hosting.
-* Python document generation services.
-* Gmail integration.
-* Telegram integration.
-* Google Sheets operational database.
-* OpenRouter-powered AI extraction.
+```text
+cancel RFQ_ABC123
+```
 
-The size of the workflow reflects the number of business scenarios handled rather than unnecessary complexity.
+Cancels an existing procurement request whenever business priorities change.
+
+Cancelled orders remain recorded instead of being deleted, preserving complete procurement history for future review and auditing.
 
 ---
 
-# Future Development
+# ⏳ Intelligent Deadline Processing
 
-The current implementation intentionally focuses on solving real procurement problems instead of accumulating features.
+Following supplier responses manually is one of the most repetitive procurement activities.
 
-Future improvements should always be driven by operational requirements gathered from businesses using the platform.
+Employees often find themselves refreshing inboxes throughout the day while trying to remember:
 
-Every component of the architecture has been designed to remain adaptable so that procurement rules, communication platforms and workflow logic can evolve according to business needs.
+- Which suppliers have already replied.
+- Which quotations are still missing.
+- Whether enough responses have been received to begin evaluation.
+
+This platform removes that responsibility entirely.
+
+Every procurement request includes a response deadline chosen directly by the employee.
+
+Whether entered as:
+
+```text
+72h
+```
+
+or
+
+```text
+3d
+```
+
+the workflow converts the value into an exact deadline and stores it for continuous monitoring.
+
+The comparison process then follows two independent business rules.
+
+### ✅ Rule One — Every Supplier Responded
+
+Whenever a supplier submits a quotation, the workflow checks whether that supplier is the final outstanding response.
+
+If every selected supplier has already replied, the comparison sheet is generated immediately.
+
+There is no reason to delay procurement once all required quotations have been received.
 
 ---
 
-# Disclaimer
+### ⏰ Rule Two — Deadline Reached
 
-This repository documents the architecture, engineering decisions and business capabilities of the system.
+Not every supplier responds on time.
 
-The workflow source code and workflow JSON files are intentionally excluded to protect the implementation while demonstrating the complete system design and functionality.
+Waiting indefinitely would delay procurement, postpone customer deliveries, and negatively affect business reliability.
+
+To prevent this, a dedicated monitoring workflow executes every 30 minutes.
+
+Its only responsibility is checking whether any procurement deadlines have expired.
+
+If the deadline is reached before every supplier has responded, the platform automatically generates the comparison sheet using every quotation received so far.
+
+Procurement continues without unnecessary delays while still giving suppliers a fair opportunity to participate.
+
+This behaviour reflects real procurement operations rather than theoretical workflow automation.
+
+---
+
+# 📊 Transparent Data Management
+
+Many automation platforms behave like black boxes.
+
+Information flows through the workflow, but managers have very little visibility into what actually happened.
+
+This project intentionally follows the opposite philosophy.
+
+Google Sheets was selected not only as an operational database but also as a transparent management interface.
+
+Every procurement event remains visible throughout the complete lifecycle.
+
+Managers and employees can inspect:
+
+- Current RFQ status
+- Client information
+- Extracted RFQ data
+- Order details
+- Individual order lines
+- Selected suppliers
+- Supplier response status
+- Response deadlines
+- Matched and unmatched parts
+- Generated RFQs
+- Supplier quotation data
+- Final comparison data
+
+Rather than depending on developers to inspect hidden databases, procurement teams can investigate orders themselves whenever questions arise.
+
+This greatly simplifies daily management, internal auditing, troubleshooting, and operational reviews.
+
+The platform stores information using several dedicated data structures, each with a clearly defined responsibility.
+
+Examples include:
+
+- Orders
+- Order Lines
+- Supplier Directory
+- RFQ–Supplier Relationships
+- Supplier Quote Data
+- Client RFQ Sheets
+- Comparison Data
+
+Every structure remains connected using RFQ IDs and Supplier IDs, preserving complete traceability from the original client inquiry to the final supplier comparison.
+
+The objective was never simply storing data.
+
+The objective was making procurement transparent.
+
+---
+
+# 📈 Executive-Ready Comparison Sheets
+
+Receiving supplier quotations is only half of the procurement process.
+
+Engineering teams still need to compare every supplier before making purchasing decisions.
+
+Manually copying supplier quotations into comparison spreadsheets is one of the most time-consuming procurement activities.
+
+The platform completely automates this process.
+
+Once procurement reaches completion, a professionally designed comparison sheet is generated automatically.
+
+The document was intentionally designed for **two different audiences**.
+
+### 👨‍💼 Managers
+
+The beginning of the comparison sheet contains a concise executive summary including important procurement information such as RFQ details, quotation date, and supplier deadline.
+
+Managers reviewing multiple procurement requests can quickly understand the order without analysing every supplier row individually.
+
+---
+
+### 👨‍🔧 Engineers
+
+Below the summary, suppliers are displayed side-by-side.
+
+Each supplier includes:
+
+- Available Quantity
+- Unit Price
+- Net Price
+- Delivery Time
+- Remarks
+
+Keeping every quotation aligned horizontally allows engineers to compare suppliers naturally without switching between multiple documents.
+
+The comparison sheet is designed to reduce visual effort while accelerating engineering decisions.
+
+Although a simple price recommendation can be generated, supplier selection ultimately depends on company-specific procurement rules.
+
+For that reason, the platform intentionally leaves the final purchasing decision to engineering professionals instead of attempting to replace business judgement.
+
+# 🏗️ Engineering Decisions
+
+One of the primary goals during development was building a system that could be trusted in real business environments rather than simply demonstrating automation capabilities.
+
+Every architectural decision was made by asking one question:
+
+> **"Will this make procurement more reliable, more transparent, or easier for employees to use?"**
+
+The answers to that question shaped every component of the platform.
+
+---
+
+## 🎯 Business Before Technology
+
+Throughout the project, business requirements always took priority over technical preferences.
+
+Whenever a feature, technology, or implementation detail conflicted with the way procurement teams naturally work, the implementation was changed—not the business process.
+
+The workflow was designed around real procurement practices rather than forcing procurement departments to adapt to software limitations.
+
+This philosophy influenced almost every engineering decision inside the project.
+
+---
+
+## 🧠 AI Assists, Logic Decides
+
+Artificial Intelligence performs tasks where flexibility provides clear value.
+
+Business decisions, however, should remain predictable.
+
+For that reason, AI is responsible for:
+
+- Document classification.
+- RFQ extraction.
+- Supplier quotation extraction.
+
+Everything else is deterministic.
+
+Business logic such as supplier tracking, procurement state management, deadline processing, RFQ generation, database updates, comparison generation, Telegram commands, validations, and regular expression parsing are handled through workflow logic and custom JavaScript.
+
+This combination provides the flexibility of AI while preserving the reliability expected inside engineering departments.
+
+---
+
+## 📊 Visibility Over Complexity
+
+Many automation systems hide everything behind APIs and databases.
+
+While technically effective, they often reduce visibility for managers and procurement employees.
+
+This platform intentionally favors transparency.
+
+Instead of storing information where only developers can inspect it, procurement data remains visible inside structured Google Sheets that can be reviewed without technical knowledge.
+
+Managers can inspect procurement progress themselves.
+
+Employees can verify supplier responses.
+
+Engineering teams can investigate procurement history.
+
+The workflow never becomes a black box.
+
+---
+
+## 👥 Every User Was Considered
+
+This project was not designed only for automation.
+
+It was designed for the people interacting with the automation.
+
+Every user experiences the system differently.
+
+### Procurement Employees
+
+- Fewer repetitive tasks.
+- No repeated spreadsheet creation.
+- No manual supplier tracking.
+- Fast Telegram commands.
+- Automatic comparison generation.
+
+### Suppliers
+
+- Professionally designed RFQs.
+- Clearly highlighted editable fields.
+- Consistent document formatting.
+- Better readability.
+
+### Engineering Teams
+
+- Side-by-side supplier comparison.
+- Organized quotation data.
+- Less manual processing.
+- Faster purchasing decisions.
+
+### Managers
+
+- Complete procurement visibility.
+- Executive summaries.
+- Easy inspection of every procurement stage.
+- Full traceability without requesting technical assistance.
+
+Small usability improvements often produce greater business value than adding another technical feature.
+
+---
+
+## 🧩 Modular Architecture
+
+The platform was intentionally divided into independent workflows rather than building one large automation.
+
+### Workflow One
+
+Receives incoming emails.
+
+- RFQ detection.
+- Supplier response detection.
+- Advertisement filtering.
+- AI extraction.
+- Part matching.
+- Order registration.
+- Employee notification.
+
+---
+
+### Workflow Two
+
+Processes Telegram commands.
+
+Responsible for:
+
+- Sending RFQs.
+- Checking procurement status.
+- Listing pending orders.
+- Listing all orders.
+- Cancelling procurement requests.
+
+Keeping employee interaction isolated makes future expansion significantly easier.
+
+---
+
+### Workflow Three
+
+Runs continuously in the background.
+
+Every thirty minutes it checks supplier deadlines.
+
+Whenever an RFQ reaches its response deadline, procurement continues automatically without employee intervention.
+
+Separating deadline management from the main workflow improves reliability while keeping every workflow focused on one responsibility.
+
+---
+
+# ⚙️ Technical Overview
+
+Although the platform focuses primarily on business operations, several technologies work together behind the scenes.
+
+### Core Platform
+
+- n8n
+
+---
+
+### Artificial Intelligence
+
+- OpenRouter
+
+---
+
+### Programming Languages
+
+- JavaScript
+- Python
+
+---
+
+### Infrastructure
+
+- Docker
+- Ubuntu VPS
+
+---
+
+### Integrations
+
+- Gmail
+- Telegram
+- Google Sheets
+- Excel Processing Services
+
+---
+
+### Internal Components
+
+- AI Document Classification
+- Multi-format Data Extraction
+- RFQ Generator
+- Comparison Sheet Generator
+- Supplier Tracking
+- Procurement State Management
+- Deadline Monitoring
+- Order Database
+- Supplier Database
+- Response Tracking
+
+---
+
+# 📂 Repository Structure
+
+```text
+AI-Procurement-Automation/
+
+│
+├── README.md
+│
+├── assets/
+│   ├── architecture.png
+│   ├── workflow-overview.png
+│   ├── incoming-rfq.png
+│   ├── telegram-notification.png
+│   ├── supplier-command.png
+│   ├── generated-rfq.png
+│   ├── comparison-sheet.png
+│   ├── database-structure.png
+│   └── workflow-sections.png
+│
+├── docs/
+│   ├── architecture.md
+│   ├── workflows.md
+│   ├── deployment.md
+│   └── engineering-decisions.md
+│
+└── LICENSE
+```
+
+As additional documentation is created, this repository will continue to grow while keeping the project organized and easy to navigate.
+
+---
+
+# 🔮 Future Development
+
+One lesson learned while building this platform is that procurement workflows are never identical between companies.
+
+Every organization follows different approval chains, supplier relationships, purchasing policies, and engineering procedures.
+
+Because of that, this project intentionally avoids adding features simply to increase complexity.
+
+Future development should always be driven by operational requirements rather than assumptions.
+
+The modular architecture allows organizations to customize nearly every stage of the workflow, including:
+
+- Communication platforms.
+- AI providers.
+- Procurement rules.
+- Supplier approval processes.
+- Internal databases.
+- ERP integrations.
+- Notification systems.
+- Document templates.
+- Reporting workflows.
+
+The platform is designed to adapt to business requirements—not to force businesses into predefined workflows.
+
+---
+
+# 📚 Lessons Learned
+
+Developing this platform reinforced several engineering principles.
+
+### Professional outputs matter.
+
+Automation should not only save time.
+
+It should also improve how a company presents itself internally and externally.
+
+Professionally generated RFQs and comparison sheets become part of the company's image.
+
+---
+
+### AI is not always the answer.
+
+Artificial Intelligence is extremely valuable for interpreting unstructured information.
+
+However, deterministic business logic remains the most reliable solution for operational decision-making.
+
+Choosing where **not** to use AI became just as important as deciding where to use it.
+
+---
+
+### Small details prevent expensive mistakes.
+
+Many seemingly minor decisions significantly improve reliability.
+
+Examples include:
+
+- Supplier IDs instead of manually typing email addresses.
+- Automatic deadline handling.
+- Procurement state tracking.
+- Complete RFQ traceability.
+- Thread ID matching for supplier replies.
+- Transparent operational databases.
+
+Small improvements accumulate into a noticeably better user experience.
+
+---
+
+### Visibility builds trust.
+
+Managers should never need developers to understand what is happening inside procurement.
+
+Keeping procurement information transparent makes the platform easier to manage, easier to debug, and easier to trust.
+
+---
+
+# 📷 Demonstration
+
+This repository documents the project using screenshots taken directly from the running system.
+
+The following demonstrations will be included throughout the documentation:
+
+- System Architecture
+- Incoming RFQ
+- Workflow Overview
+- Telegram Notifications
+- Telegram Commands
+- Generated RFQ Sheet
+- Supplier Response
+- Comparison Sheet
+- Google Sheets Database
+- Order Tracking
+- Deadline Processing
+
+Each image is intended to explain one stage of the procurement lifecycle.
+
+---
+
+# 📄 Disclaimer
+
+This repository documents the architecture, engineering decisions, workflows, and business capabilities of the project.
+
+The workflow JSON files, Python source code, prompts, and implementation details are intentionally excluded.
+
+The purpose of this repository is to demonstrate the engineering approach, system design, and operational capabilities while protecting the implementation itself.
+
+---
+
+# Thank You
+
+Thank you for taking the time to explore this project.
+
+Building this platform was far more than connecting APIs or automating repetitive tasks.
+
+It was an opportunity to study a real procurement process, understand the daily challenges faced by procurement teams, and engineer a solution that improves reliability, transparency, and efficiency without sacrificing the human experience.
+
+Whether you're an engineer, recruiter, automation specialist, or business owner, I hope this documentation clearly demonstrates not only what the platform does, but why every design decision was made.
+
+If you have feedback, ideas, or would like to discuss procurement automation, feel free to reach out.
+
+Phone Number : +201066338302
